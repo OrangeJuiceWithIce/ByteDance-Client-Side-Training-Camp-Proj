@@ -7,7 +7,7 @@ import androidx.compose.runtime.*
 
 @Composable
 fun BottomNavBar() {
-    var selected by remember { mutableIntStateOf(0) }
+    var selected by remember { mutableIntStateOf(2) }
 
     NavigationBar {
         NavigationBarItem(
@@ -25,6 +25,18 @@ fun BottomNavBar() {
         NavigationBarItem(
             selected = selected == 2,
             onClick = { selected = 2 },
+            icon = { Icon(Icons.Default.Search, null) },
+            label = { Text("搜索") }
+        )
+        NavigationBarItem(
+            selected = selected == 3,
+            onClick = { selected = 3},
+            icon = { Icon(Icons.Default.DateRange, null) },
+            label = { Text("任务") }
+        )
+        NavigationBarItem(
+            selected = selected == 4,
+            onClick = { selected = 4 },
             icon = { Icon(Icons.Default.Person, null) },
             label = { Text("我的") }
         )

@@ -9,7 +9,10 @@ import com.example.mynews.news.model.News
 @Composable
 fun NewsList(news: List<News>) {
     LazyColumn {
-        items(news) { item ->
+        items(
+            news,
+            {it.id}
+        ) { item ->
             NewsItem(news = item)
         }
     }
