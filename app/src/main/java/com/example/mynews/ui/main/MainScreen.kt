@@ -35,7 +35,7 @@ fun MainScreen(
                 selectedTab = uiState.selectedTab,
                 onTabSelected = { viewModel.onTabSelected(it)}
             )
-            NewsList(uiState.newsList)
+            NewsList(uiState.newsList,{viewModel.loadNextPage()})
         }
     }
 }
