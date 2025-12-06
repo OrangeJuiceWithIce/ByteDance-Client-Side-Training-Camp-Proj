@@ -7,7 +7,7 @@ import androidx.compose.runtime.*
 
 @Composable
 fun BottomNavBar() {
-    var selected by remember { mutableStateOf(0) }
+    var selected by remember { mutableIntStateOf(0) }
 
     NavigationBar {
         NavigationBarItem(
