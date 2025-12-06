@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mynews.news.data.NewsRepository
 import com.example.mynews.news.data.FakeNewsRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -64,4 +65,29 @@ class MainViewModel(
             isLoading = false
         }
     }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(isRefreshing = true)
+
+            delay(800)
+
+            val tab = _uiState.value.selectedTab
+
+            val allPages = (0..5).toMutableList()
+            allPages.remove(page)
+            val randomPage = allPages.random()
+            page = randomPage
+            isEndReached = false
+            isLoading = false
+
+            val randomPageData = repo.getNewsList(tab, randomPage, pageSize)
+
+            _uiState.value = _uiState.value.copy(
+                newsList = randomPageData,
+                isRefreshing = false
+            )
+        }
+    }
+
 }

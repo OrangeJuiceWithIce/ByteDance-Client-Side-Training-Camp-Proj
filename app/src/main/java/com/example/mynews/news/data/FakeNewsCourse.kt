@@ -13,7 +13,7 @@ object FakeNewsSource {
         }
     }
 
-    private val recommendNews = List(30) { index ->
+    private val recommendNews = List(100) { index ->
         when (index % 3) {
             0 -> News(
                 id = "rec_single_$index",
@@ -50,7 +50,7 @@ object FakeNewsSource {
         }
     }
 
-    private val hotNews = List(20) { index ->
+    private val hotNews = List(100) { index ->
         when (index % 3) {
             0 -> News(
                 id = "hot_single_$index",
