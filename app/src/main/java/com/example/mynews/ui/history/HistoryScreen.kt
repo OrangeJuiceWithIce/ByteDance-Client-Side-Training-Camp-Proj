@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,7 +22,9 @@ fun HistoryScreen(
     val list = viewModel.historyList
 
     Scaffold(
-        topBar = { HistoryTopBar() },
+        topBar = { HistoryTopBar(
+            onDeleteAll = { viewModel.deleteAllHistory()}
+        ) },
         bottomBar = {
             BottomNavBar(
                 items = BottomNavConfig.items,

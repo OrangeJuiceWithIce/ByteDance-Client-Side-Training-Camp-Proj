@@ -14,7 +14,6 @@ class HistoryRepository(private val dao: HistoryDao) {
         )
         dao.insert(entity)
     }
-
     fun getHistory(): List<HistoryEntry> {
         return dao.getAll()
     }

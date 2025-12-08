@@ -1,5 +1,6 @@
 package com.example.mynews.ui.main
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -52,7 +53,10 @@ fun MainScreen(
                 NewsList(
                     news = uiState.newsList,
                     onLoadMore = { viewModel.loadNextPage(context) },
-                    onItemClick = {news -> viewModel.onNewsClicked(news)}
+                    onItemClick = { news ->
+                        viewModel.onNewsClicked(news)
+                        Toast.makeText(context, "已加入浏览历史", Toast.LENGTH_SHORT).show()
+                    }
                 )
             }
         }
