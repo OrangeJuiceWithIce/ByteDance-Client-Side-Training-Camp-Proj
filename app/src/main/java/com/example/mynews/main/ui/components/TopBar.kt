@@ -1,4 +1,4 @@
-package com.example.mynews.ui.components
+package com.example.mynews.main.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,12 +18,10 @@ fun TopBar() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .statusBarsPadding()              // 避开系统状态栏
-            .background(Color(0xFFFF4D4F))    // 头条红
+            .statusBarsPadding()
+            .background(Color(0xFFFF4D4F))
             .padding(10.dp)
     ) {
-
-        // ---------- 第一行：天气 + AI回答按钮 ----------
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()

@@ -27,7 +27,7 @@ fun NewsList(
 
             val lastVisible = listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0
 
-            lastVisible >= total - 3
+            lastVisible >= total - 5
         }
     }
 

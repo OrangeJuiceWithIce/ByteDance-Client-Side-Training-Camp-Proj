@@ -1,4 +1,4 @@
-package com.example.mynews.ui.main
+package com.example.mynews.main.model
 
 import com.example.mynews.news.model.News
 

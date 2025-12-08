@@ -1,9 +1,15 @@
-package com.example.mynews.ui.main
+package com.example.mynews.main
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mynews.news.data.NewsRepository
+import coil.imageLoader
+import coil.request.CachePolicy
+import coil.request.ImageRequest
+import com.example.mynews.main.model.MainUiState
 import com.example.mynews.news.data.FakeNewsRepository
+import com.example.mynews.news.data.NewsRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -44,7 +50,7 @@ class MainViewModel(
         }
     }
 
-    fun loadNextPage() {
+    fun loadNextPage(context: Context) {
         if (isLoading || isEndReached) return
 
         isLoading = true
@@ -57,6 +63,14 @@ class MainViewModel(
             if (newPage.isEmpty()) {
                 isEndReached = true
             } else {
+                launch(Dispatchers.IO) {
+                    newPage.forEach { news ->
+                        news.images.forEach { url ->
+                            preloadImage(context, url)
+                        }
+                    }
+                }
+
                 _uiState.value = _uiState.value.copy(
                     newsList = uiState.value.newsList + newPage
                 )
@@ -90,4 +104,15 @@ class MainViewModel(
         }
     }
 
+    private fun preloadImage(context: Context, url: String) {
+        if (url.isBlank()) return
+
+        val request = ImageRequest.Builder(context)
+            .data(url)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .memoryCachePolicy(CachePolicy.ENABLED)
+            .build()
+
+        context.imageLoader.enqueue(request)
+    }
 }

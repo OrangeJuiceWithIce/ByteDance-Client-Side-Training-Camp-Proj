@@ -1,4 +1,4 @@
-package com.example.mynews.ui.components
+package com.example.mynews.main.ui.components
 
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.*
