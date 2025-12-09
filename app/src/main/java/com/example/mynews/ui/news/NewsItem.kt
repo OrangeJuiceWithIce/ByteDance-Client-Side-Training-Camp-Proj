@@ -31,6 +31,7 @@ fun NewsItem(
     }
 }
 
+//纯文字的类型
 @Composable
 fun PureTextLayout(news: News){
     Text(
@@ -46,6 +47,7 @@ fun PureTextLayout(news: News){
         color = Color.Gray.copy(alpha = 0.8f)
     )
 }
+//单图片类型
 @Composable
 fun SingleImageLayout(news: News) {
     Row(
@@ -85,7 +87,7 @@ fun SingleImageLayout(news: News) {
     }
 }
 
-
+//多图片类型
 @Composable
 fun MultiImageLayout(news: News) {
     Column {

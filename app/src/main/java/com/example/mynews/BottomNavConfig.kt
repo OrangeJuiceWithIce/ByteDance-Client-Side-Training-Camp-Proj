@@ -10,7 +10,8 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Search
 import com.example.mynews.model.BottomNavItem
 
-object BottomNavConfig {
+//用于配置底部导航栏的选项和icon
+object BottomNavConfig{
     val items = listOf(
         BottomNavItem(0, "首页", Icons.Default.Home),
         BottomNavItem(1, "视频", Icons.Default.PlayArrow),

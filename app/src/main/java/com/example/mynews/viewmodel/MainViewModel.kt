@@ -18,15 +18,22 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+//MainActivity的UI和逻辑桥梁
 class MainViewModel(
     application: Application,
 ) : AndroidViewModel(application) {
 
+    //用于获取News数据的Repo
     private val newsRepo: NewsRepository = FakeNewsRepository()
+    //用于获得history数据的Repo
+    private val historyRepo = (application as MyApp).historyRepository
+
+    //用于更新维护UIState
     private val _uiState = MutableStateFlow(MainUiState())
+    //对UI层暴露的只读状态
     val uiState: StateFlow<MainUiState> = _uiState
 
-    private val historyRepo = (application as MyApp).historyRepository
+    //获取News的基本参数
     private var page = 0
     private val pageSize = 10
     private var isLoading = false
@@ -40,6 +47,7 @@ class MainViewModel(
         loadFirstPage(tab)
     }
 
+    //切换Activity时加载第一页
     fun loadFirstPage(tab: String) {
         viewModelScope.launch {
             page = 0
@@ -85,6 +93,7 @@ class MainViewModel(
         }
     }
 
+    //上拉刷新，展示随机页
     fun refresh() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isRefreshing = true)
@@ -109,7 +118,7 @@ class MainViewModel(
         }
     }
 
-
+    //预加载图片
     private fun preloadImage(context: Context, url: String) {
         if (url.isBlank()) return
 
@@ -122,6 +131,7 @@ class MainViewModel(
         context.imageLoader.enqueue(request)
     }
 
+    //保存历史记录
     fun onNewsClicked(news: News) {
         viewModelScope.launch(Dispatchers.IO) {
             historyRepo.recordHistory(news)

@@ -5,6 +5,7 @@ import com.example.mynews.core.database.dao.HistoryDao
 import com.example.mynews.data.history.HistoryRepository
 
 class MyApp : Application() {
+    //初始化dao层和repo
     lateinit var historyDao: HistoryDao
         private set
 

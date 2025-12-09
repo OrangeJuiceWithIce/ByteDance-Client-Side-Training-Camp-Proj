@@ -23,6 +23,7 @@ fun NewsList(
         }
     }
 
+    //当lastVisible >= total - 5时应当加载更多
     val shouldLoadMore = remember {
         derivedStateOf {
             val total = listState.layoutInfo.totalItemsCount
@@ -35,6 +36,7 @@ fun NewsList(
         }
     }
 
+    //当shouldLoadMore从false->true时加载更多
     LaunchedEffect(shouldLoadMore.value) {
         if (shouldLoadMore.value) {
             onLoadMore()

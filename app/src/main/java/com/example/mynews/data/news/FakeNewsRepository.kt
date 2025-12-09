@@ -9,7 +9,7 @@ class FakeNewsRepository : NewsRepository {
         page: Int,
         pageSize: Int
     ): List<News> {
-
+        //模拟一下向后端发送请求，后端返回对应页的数据
         val fullList = FakeNewsSource.getNewsListForTab(tab)
         val fromIndex = page * pageSize
         val toIndex = minOf(fromIndex + pageSize, fullList.size)

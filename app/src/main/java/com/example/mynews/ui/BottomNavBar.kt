@@ -6,8 +6,8 @@ import com.example.mynews.model.BottomNavItem
 
 @Composable
 fun BottomNavBar(
-    items: List<BottomNavItem>,
-    selectedIndex: Int,
+    items: List<BottomNavItem>,//参考BottomNavConfig
+    selectedIndex: Int,//默认选中的item
     onItemSelected: (Int) -> Unit
 ) {
     NavigationBar {

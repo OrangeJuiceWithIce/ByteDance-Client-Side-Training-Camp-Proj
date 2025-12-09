@@ -7,7 +7,7 @@ data class News(
     val commentCount: Int,
     val time: String,
     val images: List<String> = emptyList(),
-    val type: NewsType = NewsType.PureText
+    val type: NewsType = NewsType.PureText//根据图片数量进行分类，给予不同的布局
 )
 
 enum class NewsType {
